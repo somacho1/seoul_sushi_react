@@ -1,0 +1,1129 @@
+.search-page {
+    width: 100%;
+    min-height: calc(100vh - 72px);
+    padding: 58px 20px 120px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(0, 201, 167, 0.08),
+            transparent 30%),
+        linear-gradient(180deg,
+            #f8feff 0%,
+            #f1f9fa 100%);
+}
+
+.search-container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+/* =========================
+   상단 검색 영역
+========================= */
+
+.search-hero {
+    padding: 36px;
+    margin-bottom: 28px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 28px;
+
+    background:
+        rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 24px 70px rgba(10, 35, 66, 0.08);
+}
+
+.search-eyebrow {
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+
+    padding: 0 12px;
+    margin-bottom: 12px;
+
+    border-radius: 999px;
+
+    background: #e8fbf7;
+    color: #00a88f;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.4px;
+}
+
+.search-page-title {
+    margin: 0 0 10px;
+
+    color: #0a2342;
+
+    font-size:
+        clamp(30px,
+            4vw,
+            44px);
+
+    font-weight: 900;
+    letter-spacing: -1.5px;
+}
+
+.search-page-description {
+    margin: 0 0 26px;
+
+    color: #6b8794;
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* =========================
+   검색 입력
+========================= */
+
+.search-form {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.search-input-wrap {
+    position: relative;
+
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    min-height: 58px;
+
+    padding:
+        0 52px 0 50px;
+
+    border:
+        1px solid #dcecef;
+
+    border-radius: 17px;
+
+    background: #ffffff;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.search-input-wrap:focus-within {
+    border-color: #00c9a7;
+
+    box-shadow:
+        0 0 0 4px rgba(0, 201, 167, 0.12);
+}
+
+.search-input-wrap input {
+    width: 100%;
+    padding: 0;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+    color: #0a2342;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.search-input-wrap input::placeholder {
+    color: #a5b7bf;
+    font-weight: 500;
+}
+
+.search-icon {
+    position: absolute;
+    left: 18px;
+
+    font-size: 20px;
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: 14px;
+
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #eff5f6;
+    color: #69838f;
+
+    font-size: 19px;
+    line-height: 30px;
+
+    cursor: pointer;
+}
+
+.search-submit-btn {
+    min-width: 124px;
+    min-height: 58px;
+
+    padding: 0 24px;
+
+    border: 0;
+    border-radius: 17px;
+
+    background:
+        linear-gradient(135deg,
+            #00c9a7,
+            #00ad94);
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 14px 28px rgba(0, 201, 167, 0.25);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.search-submit-btn:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 18px 34px rgba(0, 201, 167, 0.32);
+}
+
+/* 인기 검색어 */
+
+.popular-keywords {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+.popular-label {
+    color: #6b8794;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.keyword-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.keyword-list button {
+    min-height: 34px;
+
+    padding: 0 13px;
+
+    border: 1px solid #dcecef;
+    border-radius: 999px;
+
+    background: #ffffff;
+    color: #55727f;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        color 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease,
+        transform 0.18s ease;
+}
+
+.keyword-list button:hover {
+    border-color: #00c9a7;
+
+    background: #edfffb;
+    color: #00a88f;
+
+    transform:
+        translateY(-1px);
+}
+
+/* =========================
+   검색 결과 요약
+========================= */
+
+.search-summary {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-bottom: 28px;
+}
+
+.summary-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #00a88f;
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+}
+
+.search-summary h2 {
+    margin: 0;
+
+    color: #0a2342;
+
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.summary-count {
+    color: #718c98;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.summary-count strong {
+    color: #00a88f;
+
+    font-size: 20px;
+}
+
+/* =========================
+   상태 화면
+========================= */
+
+.search-state-card {
+    display: flex;
+    min-height: 220px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 24px;
+
+    background: #ffffff;
+    color: #6b8794;
+
+    text-align: center;
+
+    box-shadow:
+        0 18px 50px rgba(10, 35, 66, 0.08);
+}
+
+.search-state-card strong {
+    margin-bottom: 8px;
+
+    color: #0a2342;
+
+    font-size: 18px;
+}
+
+.search-state-card.error strong {
+    color: #e63946;
+}
+
+.empty-icon {
+    margin-bottom: 12px;
+
+    font-size: 38px;
+}
+
+.search-spinner {
+    width: 34px;
+    height: 34px;
+
+    margin-bottom: 16px;
+
+    border:
+        4px solid #e5f2f3;
+
+    border-top-color:
+        #00c9a7;
+
+    border-radius: 50%;
+
+    animation:
+        search-spin 0.8s linear infinite;
+}
+
+@keyframes search-spin {
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+/* =========================
+   공통 검색 섹션
+========================= */
+
+.search-section {
+    margin-bottom: 54px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+
+    margin-bottom: 18px;
+}
+
+.section-kicker {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #00a88f;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.3px;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    color: #0a2342;
+
+    font-size: 26px;
+    font-weight: 900;
+}
+
+.section-count {
+    display: inline-flex;
+    min-width: 58px;
+    min-height: 34px;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 12px;
+
+    border-radius: 999px;
+
+    background: #eafaf7;
+    color: #00a88f;
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.search-empty {
+    padding: 44px 20px;
+
+    border:
+        1px dashed #cfdfe3;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.72);
+
+    color: #8299a4;
+
+    text-align: center;
+}
+
+.search-link {
+    display: block;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.restaurant-results,
+.review-results {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* =========================
+   맛집 검색 카드
+========================= */
+
+.restaurant-search-card {
+    display: flex;
+    align-items: stretch;
+    gap: 22px;
+
+    padding: 20px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 16px 45px rgba(10, 35, 66, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.restaurant-search-card:hover {
+    border-color:
+        rgba(0, 201, 167, 0.5);
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 24px 56px rgba(10, 35, 66, 0.12);
+}
+
+/* 대표 이미지 영역 */
+
+.search-image-area {
+    position: relative;
+
+    width: 235px;
+    min-height: 178px;
+
+    overflow: hidden;
+    flex-shrink: 0;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(135deg,
+            #eaf8f7,
+            #f7fcfc);
+}
+
+.search-image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+    min-height: 178px;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.5s ease;
+}
+
+.restaurant-search-card:hover .search-image {
+    transform:
+        scale(1.05);
+}
+
+.search-image-placeholder {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background:
+        linear-gradient(135deg,
+            #eaf8f7,
+            #f7fcfc);
+
+    color: #8198a3;
+}
+
+.search-image-placeholder span {
+    font-size: 36px;
+}
+
+.search-image-placeholder small {
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.search-image-badge {
+    position: absolute;
+    z-index: 3;
+    top: 12px;
+    left: 12px;
+
+    display: inline-flex;
+    min-height: 29px;
+    align-items: center;
+
+    padding: 0 11px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(10, 35, 66, 0.84);
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    box-shadow:
+        0 7px 18px rgba(10, 35, 66, 0.2);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+.search-image-overlay {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+
+    background:
+        linear-gradient(180deg,
+            transparent 58%,
+            rgba(10, 35, 66, 0.17));
+
+    pointer-events: none;
+}
+
+/* 맛집 정보 */
+
+.search-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.card-heading-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.search-area {
+    display: inline-flex;
+    min-height: 27px;
+    align-items: center;
+
+    padding: 0 10px;
+    margin-bottom: 8px;
+
+    border-radius: 999px;
+
+    background: #eafaf7;
+    color: #00a88f;
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.search-name {
+    margin: 0 0 10px;
+
+    color: #0a2342;
+
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.card-arrow {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f0f8f8;
+    color: #00a88f;
+
+    font-size: 20px;
+
+    transition:
+        color 0.18s ease,
+        background 0.18s ease,
+        transform 0.18s ease;
+}
+
+.restaurant-search-card:hover .card-arrow {
+    background: #00c9a7;
+    color: #ffffff;
+
+    transform:
+        translateX(3px);
+}
+
+.search-menu {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-bottom: 8px;
+
+    color: #78909b;
+
+    font-size: 14px;
+}
+
+.search-menu strong {
+    color: #365666;
+}
+
+.search-new-menu {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-bottom: 8px;
+
+    color: #5a7a8a;
+
+    font-size: 13px;
+}
+
+.search-new-menu>span {
+    display: inline-flex;
+    min-height: 23px;
+    align-items: center;
+
+    padding: 0 7px;
+
+    border-radius: 7px;
+
+    background: #fff0f1;
+    color: #ef476f;
+
+    font-size: 9px;
+    font-weight: 900;
+}
+
+.search-new-menu strong {
+    color: #607b87;
+    font-weight: 800;
+}
+
+.search-price {
+    margin-bottom: 9px;
+
+    color: #00a88f;
+
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.search-description {
+    display: -webkit-box;
+
+    margin: 0 0 12px;
+
+    overflow: hidden;
+
+    color: #5a7a8a;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.search-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+
+    margin-top: auto;
+
+    color: #8198a3;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* =========================
+   리뷰 검색 카드
+========================= */
+
+.review-search-card {
+    padding: 22px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 14px 38px rgba(10, 35, 66, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.review-search-card:hover {
+    border-color:
+        rgba(0, 201, 167, 0.45);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 20px 48px rgba(10, 35, 66, 0.11);
+}
+
+.review-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+
+    margin-bottom: 12px;
+}
+
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stars {
+    display: inline-flex;
+    gap: 1px;
+}
+
+.star {
+    color: #d8e1e5;
+
+    font-size: 17px;
+}
+
+.star.active {
+    color: #ffbf00;
+}
+
+.review-rating strong {
+    color: #5b7480;
+
+    font-size: 14px;
+}
+
+.review-date {
+    color: #9aadb5;
+
+    font-size: 12px;
+}
+
+.review-title {
+    margin: 0 0 8px;
+
+    color: #0a2342;
+
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.review-content {
+    display: -webkit-box;
+
+    margin: 0 0 18px;
+
+    overflow: hidden;
+
+    color: #5a7a8a;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.review-bottom {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    color: #8198a3;
+
+    font-size: 13px;
+}
+
+.review-more {
+    margin-left: auto;
+
+    color: #00a88f;
+
+    font-weight: 900;
+}
+
+/* 검색어 강조 */
+.search-highlight {
+    display: inline;
+
+    padding: 0 4px;
+
+    border-radius: 6px;
+
+    background: linear-gradient(180deg,
+            transparent 20%,
+            #ffe56d 20%,
+            #ffe56d 90%,
+            transparent 90%);
+
+    color: #0f172a;
+
+    font-weight: 800;
+
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+/* =========================
+   태블릿·모바일
+========================= */
+
+@media (max-width: 768px) {
+    .search-page {
+        padding:
+            36px 14px 100px;
+    }
+
+    .search-hero {
+        padding: 24px 18px;
+        border-radius: 22px;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-submit-btn {
+        width: 100%;
+    }
+
+    .search-summary {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .restaurant-search-card {
+        flex-direction: column;
+        gap: 16px;
+
+        padding: 16px;
+    }
+
+    .search-image-area {
+        width: 100%;
+        height: 230px;
+        min-height: 230px;
+    }
+
+    .search-image {
+        height: 230px;
+        min-height: 230px;
+    }
+
+    .search-name {
+        font-size: 21px;
+    }
+
+    .review-more {
+        width: 100%;
+
+        margin-top: 4px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-page-title {
+        font-size: 28px;
+    }
+
+    .search-input-wrap {
+        min-height: 54px;
+    }
+
+    .search-submit-btn {
+        min-height: 54px;
+    }
+
+    .search-hero {
+        padding: 20px 15px;
+    }
+
+    .restaurant-search-card,
+    .review-search-card {
+        border-radius: 17px;
+    }
+
+    .search-image-area {
+        height: 205px;
+        min-height: 205px;
+    }
+
+    .search-image {
+        height: 205px;
+        min-height: 205px;
+    }
+
+    .card-heading-row {
+        gap: 8px;
+    }
+
+    .card-arrow {
+        width: 34px;
+        height: 34px;
+
+        font-size: 17px;
+    }
+}
+
+/* =========================
+   검색 결과 필터 탭
+========================= */
+
+.search-tabs {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 32px;
+    padding: 6px;
+
+    width: fit-content;
+
+    border: 1px solid #dcecef;
+    border-radius: 15px;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.82
+    );
+
+    box-shadow:
+        0 10px 26px
+        rgba(10, 35, 66, 0.06);
+}
+
+.search-tab {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 0 17px;
+
+    border: 0;
+    border-radius: 11px;
+
+    background: transparent;
+    color: #6b8794;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.search-tab > span {
+    display: inline-flex;
+    min-width: 23px;
+    height: 23px;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 6px;
+
+    border-radius: 999px;
+
+    background: #edf5f6;
+    color: #77909b;
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.search-tab:hover {
+    color: #00a88f;
+    transform: translateY(-1px);
+}
+
+.search-tab.active {
+    background: #0a2342;
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 18px
+        rgba(10, 35, 66, 0.17);
+}
+
+.search-tab.active > span {
+    background:
+        rgba(255, 255, 255, 0.16);
+
+    color: #ffffff;
+}
+
+@media (max-width: 480px) {
+    .search-tabs {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .search-tab {
+        flex: 1;
+        padding: 0 9px;
+    }
+}

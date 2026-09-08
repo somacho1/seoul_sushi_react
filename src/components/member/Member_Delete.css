@@ -1,0 +1,721 @@
+/* ========================================
+   회원탈퇴 페이지
+======================================== */
+
+.member-delete-page {
+    width: 100%;
+    min-height: calc(100vh - 72px);
+    padding: 52px 20px 100px;
+
+    background:
+        linear-gradient(180deg,
+            #fffafb 0%,
+            #f8f4f5 100%);
+
+    box-sizing: border-box;
+}
+
+.member-delete-container {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   페이지 상단
+======================================== */
+
+.member-delete-header {
+    margin-bottom: 24px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.member-delete-eyebrow {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #df4161;
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.member-delete-header h1 {
+    margin: 0 0 8px;
+
+    color: #0a2342;
+
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.member-delete-header p {
+    margin: 0;
+
+    color: #768b95;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.member-delete-back-link {
+    min-height: 42px;
+    padding: 0 16px;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.12);
+
+    border-radius: 11px;
+
+    background: #ffffff;
+    color: #0a2342;
+
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.member-delete-back-link:hover {
+    color: #df4161;
+
+    border-color:
+        rgba(223, 65, 97, 0.3);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   경고 카드
+======================================== */
+
+.member-delete-warning-card {
+    margin-bottom: 18px;
+    padding: 20px 22px;
+
+    border:
+        1px solid rgba(223, 65, 97, 0.18);
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(135deg,
+            #fff3f5 0%,
+            #fff8f9 100%);
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    box-sizing: border-box;
+}
+
+.member-delete-warning-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 15px;
+
+    background: #df4161;
+    color: #ffffff;
+
+    font-size: 25px;
+    font-weight: 900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-delete-warning-card h2 {
+    margin: 0 0 5px;
+
+    color: #a82643;
+
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.member-delete-warning-card p {
+    margin: 0;
+
+    color: #92596a;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   탈퇴 대상 회원 카드
+======================================== */
+
+.member-delete-member-card {
+    margin-bottom: 18px;
+    padding: 22px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 19px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 27px rgba(10, 35, 66, 0.07);
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    box-sizing: border-box;
+}
+
+.member-delete-member-avatar {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(135deg,
+            #e85a76 0%,
+            #df4161 100%);
+
+    color: #ffffff;
+
+    font-size: 25px;
+    font-weight: 900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 9px 20px rgba(223, 65, 97, 0.2);
+}
+
+.member-delete-member-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.member-delete-member-info span {
+    color: #8b9ca4;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.member-delete-member-info h2 {
+    margin: 4px 0;
+
+    color: #0a2342;
+
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.member-delete-member-info p {
+    margin: 0;
+
+    color: #df4161;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.member-delete-member-meta {
+    flex-shrink: 0;
+
+    text-align: right;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.member-delete-member-meta span {
+    color: #8a9ba3;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.member-delete-member-meta strong {
+    color: #294b5a;
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+
+/* ========================================
+   탈퇴 안내 카드
+======================================== */
+
+.member-delete-content-card {
+    padding: 29px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 14px 36px rgba(10, 35, 66, 0.08);
+
+    box-sizing: border-box;
+}
+
+.member-delete-content-card>h2 {
+    margin: 0 0 6px;
+
+    color: #0a2342;
+
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.member-delete-content-description {
+    margin: 0 0 20px;
+
+    color: #7d929b;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   삭제 항목 목록
+======================================== */
+
+.member-delete-notice-list {
+    margin: 0 0 26px;
+    padding: 0;
+
+    list-style: none;
+
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.member-delete-notice-list li {
+    min-height: 100px;
+    padding: 16px;
+
+    border:
+        1px solid #e7ecef;
+
+    border-radius: 14px;
+
+    background: #fafcfc;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+
+    box-sizing: border-box;
+}
+
+.member-delete-notice-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #fff0f3;
+    color: #df4161;
+
+    font-size: 15px;
+    font-weight: 900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-delete-notice-list strong {
+    display: block;
+    margin-bottom: 4px;
+
+    color: #173b4a;
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.member-delete-notice-list p {
+    margin: 0;
+
+    color: #81939b;
+
+    font-size: 11px;
+    line-height: 1.55;
+
+    word-break: keep-all;
+}
+
+
+/* ========================================
+   탈퇴 확인 폼
+======================================== */
+
+.member-delete-form {
+    padding-top: 23px;
+
+    border-top:
+        1px solid rgba(10, 35, 66, 0.08);
+}
+
+.member-delete-agree {
+    margin-bottom: 20px;
+    padding: 15px;
+
+    border:
+        1px solid #e4e9ec;
+
+    border-radius: 12px;
+
+    background: #fafcfc;
+
+    color: #455f6b;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    box-sizing: border-box;
+}
+
+.member-delete-agree input {
+    width: 17px;
+    height: 17px;
+    margin: 1px 0 0;
+
+    flex-shrink: 0;
+
+    accent-color: #df4161;
+}
+
+.member-delete-confirm-field {
+    margin-bottom: 18px;
+}
+
+.member-delete-confirm-field label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #294956;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.member-delete-confirm-field label strong {
+    margin: 0 4px;
+
+    color: #df4161;
+}
+
+.member-delete-confirm-field input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+
+    border:
+        1px solid #dce4e7;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+    color: #173b4a;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.member-delete-confirm-field input:focus {
+    border-color: #df4161;
+
+    box-shadow:
+        0 0 0 3px rgba(223, 65, 97, 0.1);
+}
+
+
+/* ========================================
+   오류 메시지
+======================================== */
+
+.member-delete-message {
+    margin-bottom: 18px;
+    padding: 13px 14px;
+
+    border-radius: 10px;
+
+    background: #fff0f3;
+    color: #c53150;
+
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   하단 버튼
+======================================== */
+
+.member-delete-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.member-delete-cancel-button,
+.member-delete-submit-button {
+    min-height: 45px;
+    padding: 0 20px;
+
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease,
+        opacity 0.18s ease;
+}
+
+.member-delete-cancel-button {
+    border:
+        1px solid rgba(10, 35, 66, 0.12);
+
+    background: #ffffff;
+    color: #0a2342;
+}
+
+.member-delete-submit-button {
+    border: 0;
+
+    background: #df4161;
+    color: #ffffff;
+}
+
+.member-delete-cancel-button:hover,
+.member-delete-submit-button:not(:disabled):hover {
+    transform: translateY(-1px);
+}
+
+.member-delete-submit-button:not(:disabled):hover {
+    filter: brightness(0.96);
+}
+
+.member-delete-submit-button:disabled {
+    cursor: not-allowed;
+
+    background: #e7b9c3;
+    opacity: 0.75;
+}
+
+
+/* ========================================
+   상태 화면
+======================================== */
+
+.member-delete-state {
+    width: 100%;
+    max-width: 650px;
+    min-height: 340px;
+    margin: 0 auto;
+    padding: 45px 25px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 14px 38px rgba(10, 35, 66, 0.09);
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.member-delete-state-icon {
+    margin-bottom: 13px;
+
+    color: #df4161;
+
+    font-size: 45px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.member-delete-state h1 {
+    margin: 0 0 9px;
+
+    color: #0a2342;
+
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.member-delete-state p {
+    margin: 0 0 20px;
+
+    color: #788e97;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.member-delete-state-button {
+    min-height: 43px;
+    padding: 0 18px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: #00a88f;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+.member-delete-spinner {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+
+    border:
+        4px solid #f2d8de;
+
+    border-top-color: #df4161;
+    border-radius: 50%;
+
+    animation:
+        memberDeleteSpin 0.8s linear infinite;
+}
+
+@keyframes memberDeleteSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ========================================
+   태블릿 반응형
+======================================== */
+
+@media screen and (max-width: 680px) {
+    .member-delete-page {
+        padding:
+            34px 14px 75px;
+    }
+
+    .member-delete-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .member-delete-header h1 {
+        font-size: 30px;
+    }
+
+    .member-delete-notice-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ========================================
+   모바일 반응형
+======================================== */
+
+@media screen and (max-width: 480px) {
+    .member-delete-content-card {
+        padding: 23px 18px;
+    }
+
+    .member-delete-member-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .member-delete-member-meta {
+        width: 100%;
+        margin-left: 74px;
+
+        text-align: left;
+    }
+
+    .member-delete-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .member-delete-cancel-button,
+    .member-delete-submit-button {
+        width: 100%;
+    }
+}

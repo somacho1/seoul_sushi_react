@@ -1,0 +1,879 @@
+/* ========================================
+   마이페이지 전체
+======================================== */
+
+.mypage-page {
+    width: 100%;
+    min-height: calc(100vh - 72px);
+    padding: 54px 20px 100px;
+
+    background:
+        linear-gradient(180deg,
+            #f8feff 0%,
+            #f1f9fa 100%);
+
+    box-sizing: border-box;
+}
+
+.mypage-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   페이지 제목
+======================================== */
+
+.mypage-header {
+    margin-bottom: 30px;
+}
+
+.mypage-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #00a88f;
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.6px;
+}
+
+.mypage-header h1 {
+    margin: 0 0 9px;
+
+    color: #0a2342;
+
+    font-family:
+        'Jua',
+        sans-serif;
+
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.mypage-header p {
+    margin: 0;
+
+    color: #6b8794;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   프로필 카드
+======================================== */
+
+.mypage-profile-card {
+    margin-bottom: 32px;
+    padding: 30px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(135deg,
+            #0a2342 0%,
+            #123c61 100%);
+
+    box-shadow:
+        0 18px 42px rgba(10, 35, 66, 0.18);
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    box-sizing: border-box;
+}
+
+.mypage-profile-main {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.mypage-avatar {
+    width: 78px;
+    height: 78px;
+
+    flex-shrink: 0;
+
+    border:
+        2px solid rgba(255, 255, 255, 0.65);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    color: #ffffff;
+
+    font-size: 32px;
+    font-weight: 900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.mypage-profile-info {
+    min-width: 0;
+}
+
+.mypage-profile-label {
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.mypage-profile-info h2 {
+    margin: 5px 0 7px;
+
+    color: #ffffff;
+
+    font-size: 29px;
+    font-weight: 900;
+}
+
+.mypage-profile-info p {
+    margin: 0;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.mypage-profile-meta {
+    flex-shrink: 0;
+
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(110px, 1fr));
+
+    gap: 12px;
+}
+
+.mypage-profile-meta>div {
+    min-height: 72px;
+    padding: 13px 16px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 15px;
+
+    background:
+        rgba(255, 255, 255, 0.09);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.mypage-profile-meta span {
+    margin-bottom: 5px;
+
+    color:
+        rgba(255, 255, 255, 0.66);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.mypage-profile-meta strong {
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 900;
+}
+
+
+/* ========================================
+   나의 활동 영역
+======================================== */
+
+.mypage-section {
+    margin-bottom: 32px;
+}
+
+.mypage-section-header {
+    margin-bottom: 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.mypage-section-header span,
+.mypage-admin-section>div>span {
+    display: block;
+    margin-bottom: 6px;
+
+    color: #00a88f;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.4px;
+}
+
+.mypage-section-header h2,
+.mypage-admin-section h2 {
+    margin: 0;
+
+    color: #0a2342;
+
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.mypage-section-header>p {
+    margin: 0;
+
+    color: #8197a1;
+
+    font-size: 13px;
+}
+
+
+/* ========================================
+   활동 메뉴 그리드
+======================================== */
+
+.mypage-menu-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.mypage-menu-card {
+    width: 100%;
+    min-height: 142px;
+    padding: 22px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 28px rgba(10, 35, 66, 0.08);
+
+    color: inherit;
+    font-family: inherit;
+    text-align: left;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 17px;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.mypage-menu-card:hover {
+    color: inherit;
+
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(0, 168, 143, 0.28);
+
+    box-shadow:
+        0 16px 38px rgba(10, 35, 66, 0.13);
+}
+
+
+/* ========================================
+   활동 메뉴 아이콘
+======================================== */
+
+.mypage-menu-icon {
+    width: 54px;
+    height: 54px;
+
+    flex-shrink: 0;
+
+    border-radius: 17px;
+
+    font-size: 24px;
+    font-weight: 900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 즐겨찾기 */
+
+.mypage-menu-icon.favorite {
+    background: #fff0f3;
+    color: #e84d6c;
+}
+
+/* 리뷰 */
+
+.mypage-menu-icon.review {
+    background: #eafaf7;
+    color: #00a88f;
+}
+
+/* 댓글 */
+
+.mypage-menu-icon.reply {
+    background: #eef4ff;
+    color: #4169a1;
+}
+
+/* 회원정보 */
+
+.mypage-menu-icon.member {
+    background: #f2f0ff;
+    color: #6c5bba;
+}
+
+
+/* ========================================
+   활동 메뉴 내용
+======================================== */
+
+.mypage-menu-content {
+    min-width: 0;
+    flex: 1;
+}
+
+.mypage-menu-content h3 {
+    margin: 0 0 7px;
+
+    color: #0a2342;
+
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.mypage-menu-content p {
+    margin: 0;
+
+    color: #78909a;
+
+    font-size: 13px;
+    line-height: 1.55;
+
+    word-break: keep-all;
+}
+
+.mypage-menu-arrow {
+    flex-shrink: 0;
+
+    color: #00a88f;
+
+    font-size: 24px;
+    font-weight: 900;
+
+    transition:
+        transform 0.18s ease;
+}
+
+.mypage-menu-card:hover .mypage-menu-arrow {
+    transform: translateX(3px);
+}
+
+.mypage-menu-status {
+    flex-shrink: 0;
+
+    padding: 6px 9px;
+
+    border-radius: 999px;
+
+    background: #edf3f5;
+    color: #899ca4;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* ========================================
+   맛집 탐색 영역
+   기존 QUICK MENU를 대체하는 영역
+======================================== */
+
+.mypage-explore-section {
+    width: 100%;
+    margin-bottom: 28px;
+    padding: 29px 30px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(135deg,
+            #ffffff 0%,
+            #f2fbf9 100%);
+
+    box-shadow:
+        0 12px 30px rgba(10, 35, 66, 0.07);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   맛집 탐색 설명
+======================================== */
+
+.mypage-explore-text {
+    min-width: 0;
+    flex: 1;
+}
+
+.mypage-explore-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+
+    color: #00a88f;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.4px;
+}
+
+.mypage-explore-text h2 {
+    margin: 0 0 7px;
+
+    color: #0a2342;
+
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.35;
+}
+
+.mypage-explore-text p {
+    margin: 0;
+
+    color: #78909a;
+
+    font-size: 13px;
+    line-height: 1.65;
+
+    word-break: keep-all;
+}
+
+
+/* ========================================
+   맛집 탐색 버튼 영역
+======================================== */
+
+.mypage-explore-buttons {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mypage-explore-button {
+    min-height: 45px;
+    padding: 0 16px;
+
+    border-radius: 12px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
+}
+
+
+/* 지역별 맛집, 인기 맛집 */
+
+.mypage-explore-button.secondary {
+    border:
+        1px solid rgba(10, 35, 66, 0.1);
+
+    background: #ffffff;
+    color: #183b4b;
+}
+
+.mypage-explore-button.secondary:hover {
+    color: #00a88f;
+
+    border-color:
+        rgba(0, 168, 143, 0.36);
+
+    box-shadow:
+        0 8px 18px rgba(10, 35, 66, 0.07);
+
+    transform: translateY(-2px);
+}
+
+
+/* AI 추천 */
+
+.mypage-explore-button.primary {
+    border: 0;
+
+    background:
+        linear-gradient(135deg,
+            #00b69a 0%,
+            #00a88f 100%);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 18px rgba(0, 168, 143, 0.2);
+}
+
+.mypage-explore-button.primary:hover {
+    color: #ffffff;
+
+    filter: brightness(0.97);
+
+    box-shadow:
+        0 11px 23px rgba(0, 168, 143, 0.27);
+
+    transform: translateY(-2px);
+}
+
+.mypage-explore-button-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+
+/* ========================================
+   관리자 메뉴
+======================================== */
+
+.mypage-admin-section {
+    margin-bottom: 28px;
+    padding: 27px 30px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(135deg,
+            #f3fbfa 0%,
+            #edf7f9 100%);
+
+    box-shadow:
+        0 12px 30px rgba(10, 35, 66, 0.07);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+
+    box-sizing: border-box;
+}
+
+.mypage-admin-section p {
+    margin: 8px 0 0;
+
+    color: #78909a;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.mypage-admin-buttons {
+    flex-shrink: 0;
+
+    display: flex;
+    gap: 10px;
+}
+
+
+/* ========================================
+   공통 버튼
+======================================== */
+
+.mypage-primary-link,
+.mypage-secondary-btn,
+.mypage-admin-btn,
+.mypage-primary-btn {
+    min-height: 44px;
+    padding: 0 20px;
+
+    border: 0;
+    border-radius: 12px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 900;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease;
+}
+
+.mypage-primary-link,
+.mypage-primary-btn {
+    background: #00a88f;
+    color: #ffffff;
+}
+
+.mypage-secondary-btn {
+    background: #edf4f5;
+    color: #0a2342;
+}
+
+.mypage-admin-btn {
+    background: #0a2342;
+    color: #ffffff;
+}
+
+.mypage-primary-link:hover,
+.mypage-primary-btn:hover,
+.mypage-secondary-btn:hover,
+.mypage-admin-btn:hover {
+    transform: translateY(-1px);
+
+    filter: brightness(0.97);
+}
+
+
+/* ========================================
+   비로그인 화면
+======================================== */
+
+.mypage-login-required {
+    min-height: 420px;
+    padding: 50px 24px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 24px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 14px 36px rgba(10, 35, 66, 0.08);
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.mypage-login-icon {
+    margin-bottom: 14px;
+
+    font-size: 52px;
+}
+
+.mypage-login-required h1 {
+    margin: 0 0 10px;
+
+    color: #0a2342;
+
+    font-size: 25px;
+}
+
+.mypage-login-required p {
+    margin: 0 0 22px;
+
+    color: #78909a;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   태블릿 반응형
+======================================== */
+
+@media screen and (max-width: 820px) {
+    .mypage-profile-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .mypage-profile-meta {
+        width: 100%;
+    }
+
+    .mypage-section-header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .mypage-explore-section,
+    .mypage-admin-section {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .mypage-explore-buttons,
+    .mypage-admin-buttons {
+        width: 100%;
+    }
+
+    .mypage-explore-button {
+        flex: 1;
+    }
+}
+
+
+/* ========================================
+   모바일 반응형
+======================================== */
+
+@media screen and (max-width: 640px) {
+    .mypage-page {
+        padding:
+            32px 14px 76px;
+    }
+
+    .mypage-header h1 {
+        font-size: 32px;
+    }
+
+    .mypage-profile-card {
+        padding: 23px 20px;
+    }
+
+    .mypage-avatar {
+        width: 64px;
+        height: 64px;
+
+        font-size: 27px;
+    }
+
+    .mypage-profile-info h2 {
+        font-size: 24px;
+    }
+
+    .mypage-profile-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .mypage-menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mypage-menu-card {
+        min-height: 130px;
+        padding: 19px;
+    }
+
+    .mypage-explore-section,
+    .mypage-admin-section {
+        padding: 23px 20px;
+    }
+
+    .mypage-explore-buttons,
+    .mypage-admin-buttons {
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+    .mypage-explore-button,
+    .mypage-primary-link,
+    .mypage-secondary-btn,
+    .mypage-admin-btn {
+        width: 100%;
+    }
+}
+
+
+/* ========================================
+   소형 모바일 반응형
+======================================== */
+
+@media screen and (max-width: 390px) {
+    .mypage-profile-main {
+        align-items: flex-start;
+    }
+
+    .mypage-menu-card {
+        align-items: flex-start;
+    }
+
+    .mypage-menu-icon {
+        width: 48px;
+        height: 48px;
+
+        border-radius: 14px;
+    }
+
+    .mypage-explore-text h2 {
+        font-size: 19px;
+    }
+}

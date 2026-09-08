@@ -1,0 +1,498 @@
+/* ========================================
+   회원정보 수정 페이지
+======================================== */
+
+.member-update-page {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    padding: 52px 20px 100px;
+
+    background:
+        linear-gradient(180deg,
+            #f8feff 0%,
+            #f1f9fa 100%);
+
+    box-sizing: border-box;
+}
+
+.member-update-container {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   페이지 상단
+======================================== */
+
+.member-update-header {
+    margin-bottom: 25px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.member-update-eyebrow {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #00a88f;
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.member-update-header h1 {
+    margin: 0 0 8px;
+
+    color: #0a2342;
+
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.25;
+}
+
+.member-update-header p {
+    margin: 0;
+
+    color: #718994;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.member-update-back-link {
+    flex-shrink: 0;
+
+    min-height: 42px;
+    padding: 0 16px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.12);
+
+    border-radius: 11px;
+
+    background: #ffffff;
+    color: #0a2342;
+
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================
+   수정 폼 카드
+======================================== */
+
+.member-update-card {
+    padding: 32px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 14px 38px rgba(10, 35, 66, 0.09);
+
+    box-sizing: border-box;
+}
+
+.member-update-field {
+    margin-bottom: 22px;
+}
+
+.member-update-field label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #0a2342;
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.member-update-field label span {
+    margin-left: 4px;
+
+    color: #e84d6c;
+}
+
+.member-update-field input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+
+    border:
+        1px solid #d9e4e8;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+    color: #183b4b;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.member-update-field input:focus {
+    border-color: #00a88f;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 168, 143, 0.12);
+}
+
+.member-update-field input.member-update-readonly {
+    background: #f4f7f8;
+    color: #73878f;
+
+    cursor: not-allowed;
+}
+
+.member-update-help {
+    margin: 6px 0 0;
+
+    color: #8a9da5;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* ========================================
+   결과 메시지
+======================================== */
+
+.member-update-message {
+    margin: 4px 0 20px;
+    padding: 13px 15px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.5;
+
+    box-sizing: border-box;
+}
+
+.member-update-message.success {
+    background: #e9faf6;
+    color: #008e79;
+}
+
+.member-update-message.error {
+    background: #fff0f3;
+    color: #d33d5c;
+}
+
+/* ========================================
+   폼 버튼
+======================================== */
+
+.member-update-buttons {
+    margin-top: 28px;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.member-update-cancel-button,
+.member-update-save-button {
+    min-height: 45px;
+    padding: 0 20px;
+
+    border: 0;
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-update-cancel-button {
+    border:
+        1px solid rgba(10, 35, 66, 0.12);
+
+    background: #ffffff;
+    color: #0a2342;
+}
+
+.member-update-save-button {
+    background: #00a88f;
+    color: #ffffff;
+}
+
+.member-update-save-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+/* ========================================
+   계정 보안 관리
+======================================== */
+
+.member-update-account-menu {
+    margin-top: 22px;
+    padding: 25px 27px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(135deg,
+            #f1fbf9 0%,
+            #eef7fa 100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    box-sizing: border-box;
+}
+
+.member-update-account-menu>div:first-child>span {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #00a88f;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.3px;
+}
+
+.member-update-account-menu h2 {
+    margin: 0 0 5px;
+
+    color: #0a2342;
+
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.member-update-account-menu p {
+    margin: 0;
+
+    color: #748b95;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.member-update-account-buttons {
+    flex-shrink: 0;
+
+    display: flex;
+    gap: 9px;
+}
+
+.member-update-password-link,
+.member-update-delete-link {
+    min-height: 41px;
+    padding: 0 15px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 900;
+    text-decoration: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-update-password-link {
+    background: #00a88f;
+    color: #ffffff;
+}
+
+.member-update-delete-link {
+    border:
+        1px solid rgba(232, 77, 108, 0.22);
+
+    background: #ffffff;
+    color: #df4161;
+}
+
+/* ========================================
+   상태 화면
+======================================== */
+
+.member-update-state {
+    width: 100%;
+    max-width: 650px;
+    min-height: 340px;
+    margin: 0 auto;
+    padding: 45px 25px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 14px 38px rgba(10, 35, 66, 0.09);
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.member-update-state-icon {
+    margin-bottom: 13px;
+
+    color: #00a88f;
+
+    font-size: 45px;
+    line-height: 1;
+}
+
+.member-update-state h1 {
+    margin: 0 0 9px;
+
+    color: #0a2342;
+
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.member-update-state p {
+    margin: 0 0 20px;
+
+    color: #788e97;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.member-update-primary-button {
+    min-height: 43px;
+    padding: 0 18px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: #00a88f;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+.member-update-spinner {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+
+    border:
+        4px solid #dcebea;
+
+    border-top-color: #00a88f;
+    border-radius: 50%;
+
+    animation:
+        memberUpdateSpin 0.8s linear infinite;
+}
+
+@keyframes memberUpdateSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========================================
+   반응형
+======================================== */
+
+@media screen and (max-width: 680px) {
+    .member-update-page {
+        padding:
+            34px 14px 75px;
+    }
+
+    .member-update-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .member-update-header h1 {
+        font-size: 30px;
+    }
+
+    .member-update-card {
+        padding: 24px 19px;
+    }
+
+    .member-update-account-menu {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .member-update-account-buttons {
+        width: 100%;
+    }
+
+    .member-update-password-link,
+    .member-update-delete-link {
+        flex: 1;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .member-update-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .member-update-cancel-button,
+    .member-update-save-button {
+        width: 100%;
+    }
+
+    .member-update-account-buttons {
+        flex-direction: column;
+    }
+
+    .member-update-password-link,
+    .member-update-delete-link {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

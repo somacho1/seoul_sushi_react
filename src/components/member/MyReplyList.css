@@ -1,0 +1,695 @@
+/* ========================================
+   페이지
+======================================== */
+
+.my-reply-page {
+    width: 100%;
+    min-height: calc(100vh - 72px);
+    padding: 54px 20px 100px;
+
+    background:
+        linear-gradient(180deg,
+            #f8feff 0%,
+            #f1f9fa 100%);
+
+    box-sizing: border-box;
+}
+
+.my-reply-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   페이지 제목
+======================================== */
+
+.my-reply-header {
+    margin-bottom: 26px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.my-reply-eyebrow {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #00a88f;
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.my-reply-header h1 {
+    margin: 0 0 8px;
+
+    color: #0a2342;
+
+    font-family:
+        'Jua',
+        sans-serif;
+
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.my-reply-header p {
+    margin: 0;
+
+    color: #6b8794;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.my-reply-back-button {
+    flex-shrink: 0;
+
+    min-height: 42px;
+    padding: 0 16px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.12);
+
+    border-radius: 11px;
+
+    background: #ffffff;
+    color: #0a2342;
+
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.my-reply-back-button:hover {
+    color: #00a88f;
+
+    border-color:
+        rgba(0, 168, 143, 0.38);
+
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   댓글 개수 요약
+======================================== */
+
+.my-reply-summary-card {
+    margin-bottom: 22px;
+    padding: 19px 22px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 28px rgba(10, 35, 66, 0.07);
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    box-sizing: border-box;
+}
+
+.my-reply-summary-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 15px;
+
+    background: #eef4ff;
+    color: #4169a1;
+
+    font-size: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-reply-summary-card>div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.my-reply-summary-card span {
+    color: #7d929c;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.my-reply-summary-card strong {
+    color: #0a2342;
+
+    font-size: 22px;
+    font-weight: 900;
+}
+
+/* ========================================
+   댓글 목록
+======================================== */
+
+.my-reply-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.my-reply-card {
+    padding: 24px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 21px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 32px rgba(10, 35, 66, 0.08);
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.my-reply-card:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(65, 105, 161, 0.25);
+
+    box-shadow:
+        0 18px 42px rgba(10, 35, 66, 0.12);
+}
+
+.my-reply-card-header {
+    margin-bottom: 14px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.my-reply-title-area {
+    min-width: 0;
+}
+
+.my-reply-number {
+    display: block;
+    margin-bottom: 6px;
+
+    color: #4169a1;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+.my-reply-title-area h2 {
+    margin: 0;
+
+    color: #0a2342;
+
+    font-size: 21px;
+    font-weight: 900;
+    line-height: 1.35;
+}
+
+/* ========================================
+   공개 상태
+======================================== */
+
+.my-reply-visible {
+    flex-shrink: 0;
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.my-reply-visible.public {
+    background: #e8faf6;
+    color: #008e79;
+}
+
+.my-reply-visible.private {
+    background: #f0f2f4;
+    color: #778890;
+}
+
+/* ========================================
+   댓글 내용
+======================================== */
+
+.my-reply-content {
+    margin: 0 0 18px;
+    padding: 17px 18px;
+
+    border-left:
+        4px solid #92acd0;
+
+    border-radius:
+        0 13px 13px 0;
+
+    background: #f6f9fd;
+    color: #516b79;
+
+    font-size: 14px;
+    line-height: 1.75;
+
+    word-break: keep-all;
+
+    box-sizing: border-box;
+}
+
+/* ========================================
+   댓글 부가정보
+======================================== */
+
+.my-reply-meta-grid {
+    margin-bottom: 18px;
+    padding: 14px;
+
+    border-radius: 14px;
+
+    background: #f7fafb;
+
+    display: grid;
+    grid-template-columns:
+        140px minmax(180px, 1fr);
+    gap: 12px;
+
+    box-sizing: border-box;
+}
+
+.my-reply-meta-grid>div {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.my-reply-meta-grid span {
+    color: #8a9ca4;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.my-reply-meta-grid strong {
+    overflow: hidden;
+
+    color: #0a2342;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ========================================
+   카드 버튼
+======================================== */
+
+.my-reply-card-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+.my-reply-detail-button,
+.my-reply-delete-button {
+    min-height: 41px;
+    padding: 0 16px;
+
+    border: 0;
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease;
+}
+
+.my-reply-detail-button {
+    background: #00a88f;
+    color: #ffffff;
+}
+
+.my-reply-delete-button {
+    background: #e84d6c;
+    color: #ffffff;
+}
+
+.my-reply-detail-button:hover,
+.my-reply-delete-button:hover {
+    color: #ffffff;
+
+    transform: translateY(-1px);
+    filter: brightness(0.97);
+}
+
+.my-reply-delete-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+    transform: none;
+}
+
+/* ========================================
+   로딩·오류·빈 목록·비로그인
+======================================== */
+
+.my-reply-state-box,
+.my-reply-login-required {
+    min-height: 340px;
+    padding: 50px 24px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 32px rgba(10, 35, 66, 0.08);
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.my-reply-state-icon,
+.my-reply-login-icon {
+    margin-bottom: 13px;
+
+    color: #4169a1;
+
+    font-size: 48px;
+    line-height: 1;
+}
+
+.my-reply-state-box strong,
+.my-reply-login-required h1 {
+    margin: 0 0 8px;
+
+    color: #0a2342;
+
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.my-reply-state-box p,
+.my-reply-login-required p {
+    margin: 0 0 21px;
+
+    color: #7d929c;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.my-reply-spinner {
+    width: 38px;
+    height: 38px;
+
+    margin-bottom: 14px;
+
+    border:
+        4px solid #dce8f5;
+
+    border-top-color: #4169a1;
+    border-radius: 50%;
+
+    animation:
+        myReplySpin 0.8s linear infinite;
+}
+
+@keyframes myReplySpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.my-reply-primary-button,
+.my-reply-primary-link {
+    min-height: 43px;
+    padding: 0 19px;
+
+    border: 0;
+    border-radius: 11px;
+
+    background: #00a88f;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+/* ========================================
+   페이지 하단 이동
+======================================== */
+
+.my-reply-footer {
+    margin-top: 28px;
+    padding: 25px 27px;
+
+    border:
+        1px solid rgba(10, 35, 66, 0.08);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(135deg,
+            #f1fbf9 0%,
+            #edf7f9 100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+
+    box-sizing: border-box;
+}
+
+.my-reply-footer>div:first-child span {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #00a88f;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.3px;
+}
+
+.my-reply-footer h2 {
+    margin: 0;
+
+    color: #0a2342;
+
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.my-reply-footer-buttons {
+    flex-shrink: 0;
+
+    display: flex;
+    gap: 9px;
+}
+
+.my-reply-footer-primary,
+.my-reply-footer-secondary {
+    min-height: 41px;
+    padding: 0 15px;
+
+    border-radius: 11px;
+
+    font-size: 13px;
+    font-weight: 900;
+    text-decoration: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-reply-footer-primary {
+    background: #00a88f;
+    color: #ffffff;
+}
+
+.my-reply-footer-secondary {
+    border:
+        1px solid rgba(10, 35, 66, 0.1);
+
+    background: #ffffff;
+    color: #0a2342;
+}
+
+/* ========================================
+   반응형
+======================================== */
+
+@media screen and (max-width: 760px) {
+    .my-reply-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .my-reply-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .my-reply-footer-buttons {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .my-reply-page {
+        padding:
+            32px 14px 76px;
+    }
+
+    .my-reply-header h1 {
+        font-size: 31px;
+    }
+
+    .my-reply-card {
+        padding: 20px 18px;
+    }
+
+    .my-reply-title-area h2 {
+        font-size: 19px;
+    }
+
+    .my-reply-meta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .my-reply-card-buttons {
+        flex-direction: column;
+    }
+
+    .my-reply-detail-button,
+    .my-reply-delete-button {
+        width: 100%;
+    }
+
+    .my-reply-footer-buttons {
+        flex-direction: column;
+    }
+
+    .my-reply-footer-primary,
+    .my-reply-footer-secondary {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .my-reply-card-header {
+        flex-direction: column;
+    }
+}
+
+
+/* ========================================
+   내가 쓴 댓글 페이징
+======================================== */
+.my-reply-pagination {
+    margin: 24px 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.my-reply-pagination button {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid rgba(10, 35, 66, 0.12);
+    border-radius: 10px;
+    background: #ffffff;
+    color: #0a2342;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.my-reply-pagination button:hover:not(:disabled),
+.my-reply-pagination button.active {
+    border-color: #00a88f;
+    background: #00a88f;
+    color: #ffffff;
+}
+
+.my-reply-pagination button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
