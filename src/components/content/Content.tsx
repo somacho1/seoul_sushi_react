@@ -266,21 +266,19 @@ const Content = () => {
 
     const increaseSeqno = (contentno: number) => {
         axiosInstance.put(`/content/seqno/increase/${contentno}`)
-            .then(result => result.data)
-            .then(data => {
+            .then(() => {
                 loadData();
             })
             .catch(err => console.error(err));
-    }
+    };
 
     const decreaseSeqno = (contentno: number) => {
         axiosInstance.put(`/content/seqno/decrease/${contentno}`)
-            .then(result => result.data)
-            .then(data => {
+            .then(() => {
                 loadData();
             })
             .catch(err => console.error(err));
-    }
+    };
 
     const getBadgeText = (badge: string) => {
         if (badge === 'NEW') return '🆕 NEW';

@@ -12,17 +12,22 @@ const Member_Find_all = () => {
   const { grade } = useGlobalStore();
   const navigate = useNavigate();
 
-  useEffect(
-    () => {
-      axiosInstance.get(`/member/find_all`)
-        .then(result => result.data)
-        .then(data => {
-          console.log('-> data:', data);
-          setData(data);
-          console.log('-> setData(data)');
-        })
-        .catch(err => console.error(err));
-    }, []);
+  useEffect(() => {
+    // 관리자 등급이 아니면 접근 제한 페이지로 이동
+    if (grade > 5) {
+      navigate('/auth');
+      return;
+    }
+
+    // 관리자라면 전체 회원 목록 조회
+    axiosInstance.get('/member/find_all')
+      .then(result => result.data)
+      .then(data => {
+        console.log('-> data:', data);
+        setData(data);
+      })
+      .catch(err => console.error(err));
+  }, [grade, navigate]);
 
   return (
     <div

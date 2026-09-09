@@ -1,61 +1,31 @@
 import { create } from 'zustand';
 import {
   persist,
-  createJSONStorage
+  createJSONStorage,
+  type StateStorage
 } from 'zustand/middleware';
 
 /**
- * 쿠키 저장소
+ * Zustand 로그인 상태를 보관하는 쿠키 저장소
  *
- * Zustand persist가 쿠키를
- * 저장소처럼 사용할 수 있도록 구성한다.
+ * 비밀번호는 저장하지 않고
+ * 로그인 여부와 회원 식별정보만 저장한다.
  */
-const cookieStorage = {
-  /**
-   * 쿠키에서 값 가져오기
-   */
-  getItem: (
-    name: string
-  ) => {
-    const match =
-      document.cookie.match(
-        new RegExp(
-          `(^| )${name}=([^;]+)`
-        )
-      );
+const cookieStorage: StateStorage = {
+  /** 쿠키에서 문자열 가져오기 */
+  getItem: (name: string) => {
+    const match = document.cookie.match(
+      new RegExp(`(^| )${name}=([^;]+)`)
+    );
 
-    if (!match) {
-      return null;
-    }
-
-    try {
-      return JSON.parse(
-        decodeURIComponent(
-          match[2]
-        )
-      );
-    } catch (error) {
-      console.error(
-        '쿠키 읽기 실패:',
-        error
-      );
-
-      return null;
-    }
+    return match
+      ? decodeURIComponent(match[2])
+      : null;
   },
 
-  /**
-   * 쿠키에 값 저장하기
-   *
-   * max-age:
-   * 60초 × 60분 × 24시간 × 7일
-   */
-  setItem: (
-    name: string,
-    value: string
-  ) => {
-    const maxAge =
-      60 * 60 * 24 * 7;
+  /** 쿠키에 문자열 저장하기 */
+  setItem: (name: string, value: string) => {
+    const maxAge = 60 * 60 * 24 * 7;
 
     document.cookie =
       `${name}=${encodeURIComponent(value)}; `
@@ -64,12 +34,8 @@ const cookieStorage = {
       + `SameSite=Lax`;
   },
 
-  /**
-   * 쿠키 삭제
-   */
-  removeItem: (
-    name: string
-  ) => {
+  /** 쿠키 삭제 */
+  removeItem: (name: string) => {
     document.cookie =
       `${name}=; `
       + 'Max-Age=0; '
@@ -78,167 +44,83 @@ const cookieStorage = {
   }
 };
 
-/**
- * 전역 Store 타입
- */
+/** 전역 로그인 상태 타입 */
 interface GlobalStore {
-  /**
-   * 로그인 여부
-   */
+  /** 로그인 여부 */
   login: boolean;
+  setLogin: (value: boolean) => void;
 
-  setLogin: (
-    value: boolean
-  ) => void;
-
-  /**
-   * 로그인 회원번호
-   */
+  /** 로그인한 회원번호 */
   memberno: number;
+  setMemberno: (value: number) => void;
 
-  setMemberno: (
-    value: number
-  ) => void;
-
-  /**
-   * 로그인 아이디
-   */
+  /** 로그인한 회원 아이디 */
   id: string;
+  setId: (value: string) => void;
 
-  setId: (
-    value: string
-  ) => void;
-
-  /**
-   * 아이디 저장 여부
-   */
-  storeId: boolean;
-
-  setStoreId: (
-    value: boolean
-  ) => void;
-
-  /**
-   * 저장된 비밀번호
-   */
-  password: string;
-
-  setPassword: (
-    value: string
-  ) => void;
-
-  /**
-   * 비밀번호 저장 여부
-   */
-  storePassword: boolean;
-
-  setStorePassword: (
-    value: boolean
-  ) => void;
-
-  /**
-   * 회원 등급
-   */
+  /** 회원 등급 */
   grade: number;
+  setGrade: (value: number) => void;
 
-  setGrade: (
-    value: number
-  ) => void;
-
-  /**
-   * 로그인 회원정보 전체 초기화
-   *
-   * 로그아웃 또는 회원탈퇴 성공 시 사용한다.
-   */
+  /** 로그아웃 또는 회원탈퇴 시 로그인 정보 초기화 */
   resetUser: () => void;
 }
 
-/**
- * 전역 로그인 Store
- */
-export const useGlobalStore =
-  create<GlobalStore>()(
-    persist(
-      set => ({
-        login: false,
+/** 전역 로그인 Store */
+export const useGlobalStore = create<GlobalStore>()(
+  persist(
+    set => ({
+      login: false,
+      memberno: 0,
+      id: '',
+      grade: 99,
 
-        setLogin: value =>
-          set({
-            login: value
-          }),
+      setLogin: value => {
+        set({ login: value });
+      },
 
-        memberno: 0,
+      setMemberno: value => {
+        set({ memberno: value });
+      },
 
-        setMemberno: value =>
-          set({
-            memberno: value
-          }),
+      setId: value => {
+        set({ id: value });
+      },
 
-        id: '',
+      setGrade: value => {
+        set({ grade: value });
+      },
 
-        setId: value =>
-          set({
-            id: value
-          }),
-
-        storeId: false,
-
-        setStoreId: value =>
-          set({
-            storeId: value
-          }),
-
-        password: '',
-
-        setPassword: value =>
-          set({
-            password: value
-          }),
-
-        storePassword: false,
-
-        setStorePassword: value =>
-          set({
-            storePassword: value
-          }),
-
-        grade: 99,
-
-        setGrade: value =>
-          set({
-            grade: value
-          }),
-
-        /**
-         * 로그인 상태 초기화
-         */
-        resetUser: () =>
-          set({
-            login: false,
-            memberno: 0,
-            id: '',
-            grade: 99,
-            password: '',
-            storePassword: false
-
-            /**
-             * 아이디 저장 여부는 유지한다.
-             *
-             * 로그아웃 후에도 아이디 저장 기능을
-             * 유지하려면 storeId는 초기화하지 않는다.
-             */
-          })
-      }),
-      {
-        /**
-         * 쿠키에 저장될 키 이름
-         */
-        name: 'global-store',
-
-        storage:
-          createJSONStorage(
-            () => cookieStorage
-          )
+      /** 로그인 회원정보 초기화 */
+      resetUser: () => {
+        set({
+          login: false,
+          memberno: 0,
+          id: '',
+          grade: 99
+        });
       }
-    )
-  );
+    }),
+    {
+      /** 브라우저에 저장되는 쿠키 이름 */
+      name: 'global-store',
+
+      storage: createJSONStorage(
+        () => cookieStorage
+      ),
+
+      /**
+       * 쿠키에 저장할 값 제한
+       *
+       * 함수나 비밀번호는 저장하지 않고
+       * 화면 유지에 필요한 회원 상태만 저장한다.
+       */
+      partialize: state => ({
+        login: state.login,
+        memberno: state.memberno,
+        id: state.id,
+        grade: state.grade
+      })
+    }
+  )
+);

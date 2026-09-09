@@ -1,13 +1,23 @@
-import React, { useState, type ChangeEvent } from 'react'
-import { enter_chk, axiosInstance } from '../Tool.js'
-import { useGlobalStore } from '../../store/store.js'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, type ChangeEvent } from 'react';
+import { enter_chk, axiosInstance } from '../Tool.js';
+import { useGlobalStore } from '../../store/store.js';
+import { Link, useNavigate } from 'react-router-dom';
 import SimpleModal, { type SimpleModalTypePayload } from '../SimpleModal.js';
 
+/**
+ * 회원 로그인 화면
+ *
+ * - 아이디와 비밀번호를 JSON 본문으로 전송
+ * - 비밀번호를 쿠키나 전역 상태에 저장하지 않음
+ * - 개발환경에서는 관리자·일반회원 테스트 버튼 제공
+ */
 const Member_Login_plain = () => {
-  // -------------------------------------------------------------------------------
-  // SimpleModal
-  // -------------------------------------------------------------------------------
+  const navigate = useNavigate();
+
+  /** 로그인 API 요청 중인지 확인 */
+  const [loading, setLoading] = useState(false);
+
+  /** 안내 모달 */
   const [modal, setModal] = useState<SimpleModalTypePayload>({
     show: false,
     title: '',
@@ -15,131 +25,164 @@ const Member_Login_plain = () => {
     onConfirm: undefined,
   });
 
-  const openModal = (payload: SimpleModalTypePayload) =>
+  const openModal = (payload: SimpleModalTypePayload) => {
     setModal({
       show: true,
       title: payload.title,
       message: payload.message,
       onConfirm: payload.onConfirm ?? undefined,
     });
+  };
 
-  const closeModal = () =>
-    setModal((m) => ({ ...m, show: false }));
+  const closeModal = () => {
+    setModal(previous => ({
+      ...previous,
+      show: false,
+    }));
+  };
 
-  // -------------------------------------------------------------------------------
-
-  const navigate = useNavigate();
-
+  /**
+   * 로그인 성공 후 회원정보를 저장하기 위한 전역 상태 함수
+   *
+   * password, storePassword 관련 상태는 사용하지 않는다.
+   */
   const {
     setLogin,
-    id,
     setId,
-    storeId,
-    setStoreId,
-    password,
-    setPassword,
-    storePassword,
-    setStorePassword,
-    grade,
     setGrade,
     setMemberno
   } = useGlobalStore();
 
-  console.log('-> Cookie 로그인 정보');
-  console.log('-> id:', id);
-  console.log('-> storeId:', storeId);
-  console.log('-> password:', password);
-  console.log('-> storePassword:', storePassword);
-
+  /** 로그인 입력값 */
   const [input, setInput] = useState({
-    id: 'user1',
-    password: '1234',
-    grade: 99
+    id: '',
+    password: '',
   });
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInput({
-      ...input,
-      [e.target.id]: e.target.value,
-    });
+  /** 아이디·비밀번호 입력 처리 */
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInput(previous => ({
+      ...previous,
+      [event.target.id]: event.target.value,
+    }));
   };
 
-  const setStoreIdChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setStoreId(true);
-    } else {
-      setStoreId(false);
-    }
-  };
-
-  const setStorePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      setStorePassword(true);
-    } else {
-      setStorePassword(false);
-    }
-  };
-
-  const test = () => {
+  /** 관리자 테스트 계정 입력 */
+  const setAdminTestAccount = () => {
     setInput({
       id: 'user',
       password: '1234',
-      grade: 5
     });
   };
 
-  const send = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  /** 일반회원 테스트 계정 입력 */
+  const setMemberTestAccount = () => {
+    setInput({
+      id: 'user1',
+      password: '1234',
+    });
+  };
 
-    const loginResult = await axiosInstance.post(
-      `/member/login?id=${input.id}&password=${input.password}`
-    );
+  /** 로그인 요청 */
+  const send = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
 
-    const loginResultData = loginResult.data;
+    const trimmedId = input.id.trim();
 
-    console.log('-> axiosInstance data:' + loginResultData);
+    if (!trimmedId) {
+      openModal({
+        show: true,
+        title: '로그인 확인',
+        message: '아이디를 입력해주세요.',
+      });
 
-    if (loginResultData === 1) {
-      console.log('로그인 성공');
+      return;
+    }
 
-      setLogin(true);
+    if (!input.password) {
+      openModal({
+        show: true,
+        title: '로그인 확인',
+        message: '비밀번호를 입력해주세요.',
+      });
 
-      if (storeId === true) {
-        setId(input.id);
-        setStoreId(true);
-      } else {
-        setId('');
-        setStoreId(false);
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      /**
+       * 로그인 정보를 URL이 아닌 JSON 본문으로 전송
+       *
+       * POST /member/login
+       * {
+       *   "id": "user1",
+       *   "password": "1234"
+       * }
+       */
+      const loginResult = await axiosInstance.post<number>(
+        '/member/login',
+        {
+          id: trimmedId,
+          password: input.password,
+        }
+      );
+
+      if (loginResult.data !== 1) {
+        openModal({
+          show: true,
+          title: '로그인 실패',
+          message: '아이디 또는 비밀번호를 다시 확인해주세요.',
+        });
+
+        return;
       }
 
-      if (storePassword === true) {
-        setPassword(input.password);
-        setStorePassword(true);
-      } else {
-        setPassword('');
-        setStorePassword(false);
-      }
-
+      /**
+       * 로그인 성공 후 회원 상세정보 조회
+       *
+       * 관리자 여부를 확인할 grade와
+       * 리뷰·댓글 작성에 사용할 memberno를 가져온다.
+       */
       const memberResult = await axiosInstance.get(
-        `/member/read_id/${input.id}`
+        `/member/read_id/${encodeURIComponent(trimmedId)}`
       );
 
       const memberResultData = memberResult.data;
 
-      console.log('-> memberResultData.grade:' + memberResultData.grade);
-      console.log('-> memberResultData.memberno:' + memberResultData.memberno);
+      if (
+        !memberResultData
+        || memberResultData.memberno == null
+        || memberResultData.id == null
+      ) {
+        openModal({
+          show: true,
+          title: '로그인 오류',
+          message: '회원정보를 불러오지 못했습니다.',
+        });
 
-      setGrade(memberResultData.grade);
+        return;
+      }
+
+      /** 로그인 회원정보를 전역 상태에 저장 */
+      setLogin(true);
       setId(memberResultData.id);
+      setGrade(memberResultData.grade);
       setMemberno(memberResultData.memberno);
 
+      /** 메인 화면으로 이동 */
       navigate('/');
-    } else {
+    } catch (error) {
+      console.error('로그인 요청 실패:', error);
+
       openModal({
         show: true,
-        title: '로그인 실패',
-        message: '로그인 정보를 다시 입력해주세요.',
+        title: '로그인 오류',
+        message: '서버에 연결할 수 없습니다. 잠시 후 다시 시도해주세요.',
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -149,7 +192,7 @@ const Member_Login_plain = () => {
         width: '100%',
         minHeight: 'calc(100vh - 72px)',
         background: 'linear-gradient(180deg,#F8FEFF 0%,#F1F9FA 100%)',
-        padding: '70px 20px 100px'
+        padding: '70px 20px 100px',
       }}
     >
       <form
@@ -162,13 +205,14 @@ const Member_Login_plain = () => {
           borderRadius: '22px',
           boxShadow: '0 18px 45px rgba(10,35,66,.10)',
           border: '1px solid rgba(10,35,66,.08)',
-          textAlign: 'left'
+          textAlign: 'left',
         }}
       >
+        {/* 로그인 제목 */}
         <div
           style={{
             textAlign: 'center',
-            marginBottom: '34px'
+            marginBottom: '34px',
           }}
         >
           <div
@@ -177,7 +221,7 @@ const Member_Login_plain = () => {
               fontSize: '12px',
               fontWeight: 900,
               letterSpacing: '1.5px',
-              marginBottom: '10px'
+              marginBottom: '10px',
             }}
           >
             LOGIN
@@ -188,7 +232,7 @@ const Member_Login_plain = () => {
               fontFamily: "'Jua', sans-serif",
               fontSize: '38px',
               color: '#0A2342',
-              marginBottom: '10px'
+              marginBottom: '10px',
             }}
           >
             로그인
@@ -198,15 +242,17 @@ const Member_Login_plain = () => {
             style={{
               color: '#6B8794',
               fontSize: '15px',
-              margin: 0
+              margin: 0,
             }}
           >
             회친자들에 오신 것을 환영합니다.
           </p>
         </div>
 
+        {/* 아이디 입력 */}
         <div className="mb-3">
           <label
+            htmlFor="id"
             className="form-label"
             style={{ fontWeight: 700 }}
           >
@@ -218,45 +264,23 @@ const Member_Login_plain = () => {
             className="form-control"
             id="id"
             placeholder="아이디"
+            autoComplete="username"
             autoFocus
-            onKeyDown={e => enter_chk(e, 'password')}
+            disabled={loading}
+            onKeyDown={event => enter_chk(event, 'password')}
             onChange={onChange}
             value={input.id}
             style={{
               height: '48px',
-              borderRadius: '14px'
+              borderRadius: '14px',
             }}
           />
         </div>
 
-        <div
-          className="mb-3 form-check"
-          style={{
-            marginLeft: '2px'
-          }}
-        >
-          <input
-            type="checkbox"
-            id="storeId"
-            className="form-check-input"
-            onChange={setStoreIdChange}
-            checked={storeId}
-            style={{ marginTop: '2px' }}
-          />
-
+        {/* 비밀번호 입력 */}
+        <div className="mb-4">
           <label
-            className="form-check-label"
-            htmlFor="storeId"
-            style={{
-              color: '#6B8794'
-            }}
-          >
-            아이디 저장
-          </label>
-        </div>
-
-        <div className="mb-3">
-          <label
+            htmlFor="password"
             className="form-label"
             style={{ fontWeight: 700 }}
           >
@@ -268,90 +292,93 @@ const Member_Login_plain = () => {
             className="form-control"
             id="password"
             placeholder="패스워드"
-            onKeyDown={e => enter_chk(e, 'btnSend')}
+            autoComplete="current-password"
+            disabled={loading}
+            onKeyDown={event => enter_chk(event, 'btnSend')}
             onChange={onChange}
             value={input.password}
             style={{
               height: '48px',
-              borderRadius: '14px'
+              borderRadius: '14px',
             }}
           />
         </div>
 
-        <div
-          className="mb-4 form-check"
+        {/* 로그인 버튼 */}
+        <button
+          id="btnSend"
+          type="submit"
+          className="btn btn-primary"
+          disabled={loading}
           style={{
-            marginLeft: '2px'
+            width: '100%',
+            height: '48px',
+            borderRadius: '14px',
           }}
         >
-          <input
-            type="checkbox"
-            id="storePassword"
-            className="form-check-input"
-            onChange={setStorePasswordChange}
-            checked={storePassword}
-            style={{ marginTop: '2px' }}
-          />
+          {loading ? '로그인 중...' : '로그인'}
+        </button>
 
-          <label
-            className="form-check-label"
-            htmlFor="storePassword"
+        {/*
+         * 테스트 계정 버튼
+         *
+         * npm run dev로 실행한 개발환경에서만 표시한다.
+         * 화면 녹화와 관리자·회원 기능 테스트에 사용한다.
+         */}
+        {import.meta.env.DEV && (
+          <div
             style={{
-              color: '#6B8794'
+              display: 'flex',
+              gap: '10px',
+              marginTop: '12px',
             }}
           >
-            패스워드 저장
-          </label>
-        </div>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              disabled={loading}
+              onClick={setAdminTestAccount}
+              style={{
+                flex: 1,
+                height: '44px',
+                borderRadius: '14px',
+              }}
+            >
+              관리자 테스트
+            </button>
 
-        <div
-          style={{
-            display: 'flex',
-            gap: '12px'
-          }}
-        >
-          <button
-            id="btnSend"
-            type="submit"
-            className="btn btn-primary"
-            style={{
-              flex: 1,
-              height: '48px',
-              borderRadius: '14px'
-            }}
-          >
-            로그인
-          </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              disabled={loading}
+              onClick={setMemberTestAccount}
+              style={{
+                flex: 1,
+                height: '44px',
+                borderRadius: '14px',
+              }}
+            >
+              회원 테스트
+            </button>
+          </div>
+        )}
 
-          <button
-            id="btnTest"
-            type="button"
-            className="btn btn-secondary"
-            onClick={test}
-            style={{
-              flex: 1,
-              height: '48px',
-              borderRadius: '14px'
-            }}
-          >
-            테스트 계정
-          </button>
-        </div>
-
+        {/* 회원가입 이동 */}
         <div
           style={{
             textAlign: 'center',
             marginTop: '28px',
             color: '#6B8794',
-            fontSize: '14px'
+            fontSize: '14px',
           }}
         >
           계정이 없으신가요?{' '}
+
           <Link
             to="/member/signup"
             style={{
               color: '#00A88F',
-              fontWeight: 700
+              fontWeight: 700,
             }}
           >
             회원가입
@@ -368,7 +395,6 @@ const Member_Login_plain = () => {
       />
     </div>
   );
-
-}
+};
 
 export default Member_Login_plain;

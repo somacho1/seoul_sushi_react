@@ -59,7 +59,6 @@ const Member_Delete = () => {
     const {
         login,
         memberno: loginMemberno,
-        id: loginId,
         resetUser
     } = useGlobalStore();
 
