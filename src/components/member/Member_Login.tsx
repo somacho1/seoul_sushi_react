@@ -70,7 +70,7 @@ const Member_Login_plain = () => {
   /** 관리자 테스트 계정 입력 */
   const setAdminTestAccount = () => {
     setInput({
-      id: 'user',
+      id: 'admin',
       password: '1234',
     });
   };
